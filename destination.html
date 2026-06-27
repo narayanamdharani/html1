@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Destination - Pacific Travel Agency</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    background:rgba(0, 0, 0, 0.6);
+    padding:15px 60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:1000;
+}
+
+.logo{
+    display:flex;
+    flex-direction:column;
+    line-height:1.2;
+}
+
+.logo h1{
+    color:white;
+    font-size:22px;
+}
+
+.logo span{
+    color:#ff5722;
+    font-size:14px;
+    font-weight:bold;
+}
+        nav select{
+    background:transparent;
+    border:none;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+nav select option{
+    color:black;
+}
+nav select:hover{
+color:#ff5722;
+}
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:25px;
+}
+
+nav ul li a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+nav ul li a:hover{
+    text-decoration:underline;
+}
+
+/* Page Content */
+body{
+    background:#f4f4f4;
+    padding:50px 0;
+
+}
+
+.container{
+    padding-top:120px;
+    width:70%;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:30px;
+}
+
+.card{
+    background:white;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    position:relative;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card img{
+    width:100%;
+    height: 150px;
+    object-fit:cover;
+}
+
+.about-image img{
+            width:100%;
+            height:450px;
+            object-fit:cover;
+            border-radius:10px;
+        }
+
+.price{
+    position:absolute;
+    top:15px;
+    right:15px;
+    background:#ff5722;
+    color:white;
+    padding:6px 12px;
+    font-size:14px;
+    font-weight:bold;
+    border-radius:3px;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card-content h3{
+    margin-bottom:10px;
+}
+
+.card-content p{
+    color:gray;
+    font-size:14px;
+}
+
+/* Responsive */
+@media(max-width:900px){
+    .container{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+    .container{
+        grid-template-columns:1fr;
+    }
+}
+/* ===== Agoda Style Top Destinations Slider ===== */
+
+.main-wrapper{
+    max-width:1000px;   /* change this value to control width */
+    margin:60px auto;
+}
+
+.top-destinations{
+    width:100%;
+}
+
+.top-destinations h2{
+    font-size:28px;
+    margin-bottom:25px;
+}
+
+.slider-container{
+    position:relative;
+    overflow:hidden;
+}
+
+.slider{
+    display:flex;
+    gap:20px;
+    transition:0.5s ease;
+    will-change: transform;
+}
+
+.destination-card{
+    min-width:220px;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+
+.destination-card img{
+    width:100%;
+    height:160px;
+    object-fit:cover;
+}
+
+.destination-info{
+    padding:12px;
+    background:white;
+}
+
+.destination-info h4{
+    margin-bottom:5px;
+}
+
+.destination-info p{
+    font-size:13px;
+    color:gray;
+}
+
+/* Arrow buttons */
+.arrow{
+    position:absolute;
+    top:40%;
+    transform:translateY(-50%);
+    background:white;
+    border:none;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    box-shadow:0 3px 10px rgba(0,0,0,0.2);
+    cursor:pointer;
+    font-size:18px;
+    z-index: 10;
+}
+
+.arrow.left{
+    left:0;
+}
+
+.arrow.right{
+    right:0;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">
+        <h1>Pacific</h1>
+        <span>TRAVEL AGENCY</span>
+    </div>
+
+    <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="destination.html">Destination</a></li>
+        <li><a href="hotel.html">Hotel</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#" id="logoutBtn">Logout</a></li>
+        <li>
+    <select id="currency" onchange="changeCurrency()" 
+        style="padding:5px; border-radius:5px;">
+        <option value="USD">$ USD</option>
+        <option value="INR">₹ INR</option>
+        <option value="EUR">€ EUR</option>
+    </select>
+</li>
+    </ul>
+</nav>
+<section class="about-image">
+    <img src="https://rcm.ac.in/wp-content/uploads/2022/04/TravelTourism-copy.jpg.webp">
+</section>
+<!-- Your existing page content here -->
+<section class="hero">
+    <!-- hero content -->
+</section>
+
+<!-- Add the script at the end, before </body> -->
+<script>
+    // Logout button functionality
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    logoutBtn.addEventListener('click', function(){
+        // Remove login flag from localStorage
+        localStorage.removeItem('loggedIn');
+
+        // Redirect to login page
+        alert('You have been logged out!');
+        window.location.href = 'login.html';
+    });
+
+    // Optional: protect this page if user not logged in
+    if(localStorage.getItem('loggedIn') !== 'true'){
+        alert('Please login first!');
+        window.location.href = 'login.html';
+    }
+</script>
+
+
+<div class="container">
+
+    <!-- Row 1 -->
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e">
+        <div class="price" data-price="550">$550/person</div>
+        <div class="card-content">
+            <h3>Beautiful Beach</h3>
+            <p>7 Days Tour • Near Beach</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470">
+        <div class="price" data-price="650">$650/person</div>
+        <div class="card-content">
+            <h3>Green Mountains</h3>
+            <p>10 Days Tour • Near Mountain</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1493558103817-58b2924bce98">
+        <div class="price" data-price="550">$550/person</div>
+        <div class="card-content">
+            <h3>Island View</h3>
+            <p>7 Days Tour • Near Beach</p>
+        </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e">
+        <div class="price" data-price="550">$550/person</div>
+        <div class="card-content">
+            <h3>Forest Adventure</h3>
+            <p>5 Days Tour • Nature</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+        <div class="price" data-price="550">$550/person</div>
+        <div class="card-content">
+            <h3>Blue Ocean</h3>
+            <p>7 Days Tour • Beach</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad">
+        <div class="price" data-price="650">$650/person</div>
+        <div class="card-content">
+            <h3>City Night Life</h3>
+            <p>6 Days Tour • City</p>
+        </div>
+    </div>
+
+    <!-- Row 3 (NEW ADDED) -->
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e">
+        <div class="price" data-price="500">$500/person</div>
+        <div class="card-content">
+            <h3>Snow Mountains</h3>
+            <p>8 Days Tour • Snow View</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470">
+        <div class="price" data-price="700">$700/person</div>
+        <div class="card-content">
+            <h3>Lake Paradise</h3>
+            <p>9 Days Tour • Lake Side</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e">
+        <div class="price" data-price="600">$600/person</div>
+        <div class="card-content">
+            <h3>Jungle Safari</h3>
+            <p>7 Days Tour • Wildlife</p>
+        </div>
+    </div>
+
+</div>
+<div class="main-wrapper">
+
+<section class="top-destinations">
+    <h2>Top destinations in India</h2>
+
+    
+        
+    <div class="slider-container">
+        <button class="arrow left" onclick="moveSlide(-1)">&#10094;</button>
+
+        <div class="slider" id="slider">
+
+            <div class="destination-card">
+                <img src="https://images.unsplash.com/photo-1596178065887-1198b6148b2b">
+                <div class="destination-info">
+                    <h4>Bangalore</h4>
+                    <p>5,372 accommodations</p>
+                </div>
+            </div>
+
+            <div class="destination-card">
+                <img src="https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7">
+                <div class="destination-info">
+                    <h4>Mumbai</h4>
+                    <p>4,177 accommodations</p>
+                </div>
+            </div>
+
+            <div class="destination-card">
+                <img src="https://images.unsplash.com/photo-1587922546307-776227941871">
+                <div class="destination-info">
+                    <h4>Goa</h4>
+                    <p>9,254 accommodations</p>
+                </div>
+            </div>
+
+            <div class="destination-card">
+                <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5">
+                <div class="destination-info">
+                    <h4>New Delhi</h4>
+                    <p>12,786 accommodations</p>
+                </div>
+            </div>
+
+            <div class="destination-card">
+                <img src="https://images.unsplash.com/photo-1561361058-c24cecae35ca">
+                <div class="destination-info">
+                    <h4>Varanasi</h4>
+                    <p>2,341 accommodations</p>
+                </div>
+            </div>
+
+            <div class="destination-card">
+                <img src="https://images.unsplash.com/photo-1586348943529-beaae6c28db9">
+                <div class="destination-info">
+                    <h4>Kochi</h4>
+                    <p>1,987 accommodations</p>
+                </div>
+            </div>
+
+            <div class="destination-card">
+                <img src="https://images.unsplash.com/photo-1591017403286-fd8493524e1e">
+                <div class="destination-info">
+                    <h4>Pune</h4>
+                    <p>3,210 accommodations</p>
+                </div>
+            </div>
+
+        </div>
+
+        <button class="arrow right" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+</section>
+</div>
+<script>
+let currentIndex = 0;
+const slider = document.getElementById("slider");
+const cardWidth = 240; // card width + gap
+const totalCards = slider.children.length;
+const visibleCards = 4;
+
+function moveSlide(direction){
+
+    currentIndex += direction;
+
+    if(currentIndex < 0){
+        currentIndex = 0;
+    }
+
+    if(currentIndex > totalCards - visibleCards){
+        currentIndex = totalCards - visibleCards;
+    }
+
+    slider.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+}
+</script>
+<script>
+function changeCurrency() {
+
+    const currency = document.getElementById("currency").value;
+    const prices = document.querySelectorAll(".price");
+
+    prices.forEach(price => {
+
+        let basePrice = price.getAttribute("data-price");
+
+        if (currency === "USD") {
+            price.innerHTML = "$" + basePrice + "/person";
+        } 
+        else if (currency === "INR") {
+            let converted = (basePrice * 83).toFixed(0);
+            price.innerHTML = "₹" + converted + "/person";
+        } 
+        else if (currency === "EUR") {
+            let converted = (basePrice * 0.92).toFixed(0);
+            price.innerHTML = "€" + converted + "/person";
+        }
+
+    });
+}
+</script>
+
+
+</body>
+</html>

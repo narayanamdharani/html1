@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pacific Travel Agency</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins', sans-serif;
+        }
+
+        body{
+            overflow-x:hidden;
+        }
+
+        /* ================= NAVBAR ================= */
+        header{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            padding:20px 80px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            z-index:1000;
+            background:rgba(0,0,0,0.6);
+        }
+
+        .logo h2{
+            color:white;
+            font-weight:800;
+        }
+
+        .logo span{
+            color:#ff5722;
+            font-size:12px;
+            letter-spacing:2px;
+        }
+        nav select{
+    background:transparent;
+    border:none;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+nav select option{
+    color:black;
+}
+nav select:hover{
+color:#ff5722;
+}
+
+        nav ul{
+            list-style:none;
+            display:flex;
+            gap:30px;
+        }
+
+        nav ul li a{
+            text-decoration:none;
+            color:white;
+        }
+
+        nav ul li a:hover{
+            color:#ff5722;
+        }
+
+        /* ================= HERO ================= */
+        .hero{
+            height:100vh;
+            background:url("t.jpg") no-repeat center/cover;
+            position:relative;
+            display:flex;
+            align-items:center;
+            padding-left:80px;
+            padding-top:120px;
+        }
+
+        .overlay{
+            position:absolute;
+            width:100%;
+            height:100%;
+            background:rgba(0,0,0,0.4);
+            top:0;
+            left:0;
+        }
+
+        .hero-content{
+            position:absolute;
+            color:white;
+            max-width:600px;
+
+        }
+
+        .welcome{
+            color:#ff5722;
+            font-style:italic;
+            margin-bottom:10px;
+        }
+
+        .hero-content h1{
+            font-size:55px;
+            font-weight:800;
+            line-height:1.2;
+        }
+
+        .subtext{
+            margin-top:20px;
+        }
+
+        /* PLAY BUTTON RIGHT SIDE */
+        .play-button{
+            position:absolute;
+            right:100px;
+            top:50%;
+            transform:translateY(-50%);
+            width:70px;
+            height:70px;
+            background:#ff5722;
+            color:white;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            border-radius:50%;
+            font-size:26px;
+            cursor:pointer;
+            transition:0.3s;
+            z-index:5;
+        }
+
+        .play-button:hover{
+            background:#e64a19;
+        }
+
+        /* ================= SEARCH BOX ================= */
+        .search-box{
+            position:absolute;
+            bottom:-60px;
+            left:50%;
+            transform:translateX(-50%);
+            width:85%;
+            background:white;
+            border-radius:5px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .tabs{
+            display:flex;
+        }
+
+        .tab{
+            padding:15px 25px;
+            border:none;
+            background:#eee;
+            cursor:pointer;
+        }
+
+        .active-tab{
+            background:#ff5722;
+            color:white;
+        }
+
+        .form{
+            display:flex;
+            align-items:center;
+        }
+
+        .input-group{
+            flex:1;
+            padding:20px;
+            border-right:1px solid #ddd;
+        }
+
+        .input-group:last-child{
+            border-right:none;
+        }
+
+        .input-group label{
+            font-size:12px;
+            color:#ff5722;
+            display:block;
+            margin-bottom:5px;
+            font-weight:600;
+        }
+
+        .input-group input{
+            width:100%;
+            border:none;
+            outline:none;
+            font-size:14px;
+        }
+
+        .search-btn{
+            background:#ff5722;
+            color:white;
+            border:none;
+            padding:35px 40px;
+            font-weight:bold;
+            cursor:pointer;
+        }
+
+        /* ================= RESULTS ================= */
+        #results{
+            display:none;
+            padding:120px 80px 60px 80px;
+        }
+
+        .result-card{
+            background:#f5f5f5;
+            padding:20px;
+            margin-bottom:20px;
+            border-radius:8px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .result-card img{
+            width:100%;
+            height:200px;
+            object-fit:cover;
+            border-radius:6px;
+            margin-bottom:10px;
+        }
+
+        .result-card h3{
+            color:#ff5722;
+        }
+
+        .book-btn{
+            margin-top:10px;
+            padding:10px 20px;
+            border:none;
+            background:#ff5722;
+            color:white;
+            border-radius:5px;
+            cursor:pointer;
+        }
+
+        .book-btn:hover{
+            background:#e64a19;
+        }
+
+        /* ================= SLIDESHOW ================= */
+        .slideshow{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background-size:cover;
+            background-position:center;
+            background-repeat:no-repeat;
+            display:none;
+            z-index:1;
+            transition:background-image 0.8s ease-in-out;
+        }
+
+        .close-btn{
+            position:absolute;
+            top:30px;
+            right:50px;
+            font-size:30px;
+            color:white;
+            cursor:pointer;
+            z-index:2200;
+
+        }
+        /* FOOTER */
+
+footer{
+background:#111;
+color:white;
+padding:50px 80px;
+margin-top:120px;
+}
+
+.footer-container{
+display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+}
+
+.footer-section{
+width:250px;
+}
+
+.footer-section h3{
+margin-bottom:15px;
+color:#ff5722;
+}
+
+.footer-section p{
+margin-bottom:10px;
+font-size:14px;
+}
+
+.footer-section a{
+text-decoration:none;
+color:white;
+display:block;
+margin-bottom:8px;
+}
+
+.footer-section a:hover{
+color:#ff5722;
+}
+
+.footer-bottom{
+text-align:center;
+margin-top:30px;
+font-size:14px;
+color:#aaa;
+}
+
+       
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <h2>Pacific</h2>
+        <span>TRAVEL AGENCY</span>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="destination.html">Destination</a></li>
+            <li><a href="hotel.html">Hotel</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="#" id="logoutBtn">Logout</a></li>
+            <li>
+    <select id="currency" onchange="changeCurrency()" 
+        style="padding:5px; border-radius:5px;">
+        <option value="USD">$ USD</option>
+        <option value="INR">₹ INR</option>
+        <option value="EUR">€ EUR</option>
+    </select>
+</li>
+        </ul>
+
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+        <p class="welcome">Welcome to Pacific</p>
+        <h1>Discover Your Favorite<br>Place with Us</h1>
+        <p class="subtext">
+            Travel to any corner of the world, without going around in circles
+        </p>
+    </div>
+
+    <div class="play-button" onclick="openGallery()">▶</div>
+
+    <div class="search-box">
+        <div class="tabs">
+            <button class="tab">Search Tour</button>
+            <button class="tab active-tab">Hotel</button>
+        </div>
+
+        <form class="form" id="searchForm">
+            <div class="input-group">
+                <label>Destination</label>
+                <input type="text" id="destination" placeholder="Search place" required>
+            </div>
+            <div class="input-group">
+                <label>Check-In Date</label>
+                <input type="date" id="checkin" required>
+            </div>
+            <div class="input-group">
+                <label>Check-Out Date</label>
+                <input type="date" id="checkout" required>
+            </div>
+            <div class="input-group">
+                <label>Price Limit</label>
+                <input type="number" id="price" placeholder="100" required>
+            </div>
+            <button type="submit" class="search-btn">SEARCH</button>
+        </form>
+    </div>
+</section>
+
+<section id="results">
+    <h2 style="color:#ff5722; margin-bottom:20px;">Search Results</h2>
+    <div id="resultContent"></div>
+</section>
+
+<div class="slideshow" id="slideshow">
+    <span class="close-btn" onclick="closeSlideshow()">✖</span>
+</div>
+
+<script>
+
+/* LOGIN PROTECTION */
+if(localStorage.getItem('loggedIn') !== 'true'){
+    alert('Please login first!');
+    window.location.href = 'login.html';
+}
+
+/* LOGOUT */
+document.getElementById('logoutBtn').addEventListener('click', function(){
+    localStorage.removeItem('loggedIn');
+    alert('You have been logged out!');
+    window.location.href = 'login.html';
+});
+/* HERO BACKGROUND SLIDESHOW */
+
+/* HERO BACKGROUND SLIDESHOW */
+
+let images = [
+    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1600&q=80",
+    "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80",
+    "t.jpg"   // original background image (LAST IMAGE)
+];
+
+let currentIndex = 0;
+let slideInterval;
+
+function openGallery(){
+
+    const hero = document.querySelector(".hero");
+
+    currentIndex = 0;
+
+    slideInterval = setInterval(function(){
+
+        hero.style.backgroundImage = `url('${images[currentIndex]}')`;
+
+        // If last image (t.jpg), stop slideshow
+        if(images[currentIndex] === "t.jpg"){
+            clearInterval(slideInterval);
+        }
+
+        currentIndex++;
+
+    },2000);
+}
+
+
+
+/* SEARCH FUNCTION */
+document.getElementById("searchForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    let destination = document.getElementById("destination").value.toLowerCase();
+    let checkin = document.getElementById("checkin").value;
+    let checkout = document.getElementById("checkout").value;
+    let price = parseInt(document.getElementById("price").value);
+
+    let results = document.getElementById("results");
+    let resultContent = document.getElementById("resultContent");
+
+    results.style.display="block";
+    resultContent.innerHTML="";
+    let found=false;
+
+    let hotels=[
+        {name:"Goa Beach Resort",place:"goa",price:120,image:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e"},
+        {name:"Paris Luxury Hotel",place:"paris",price:200,image:"https://images.unsplash.com/photo-1502602898657-3e91760cbb34"},
+        {name:"Hyderabad Grand Stay",place:"hyderabad",price:80,image:"https://images.unsplash.com/photo-1566073771259-6a8506099945"},
+        {name:"Delhi Palace Inn",place:"delhi",price:90,image:"https://images.unsplash.com/photo-1551882547-ff40c63fe5fa"},
+        {name:"New York City Hotel",place:"new york",price:220,image:"https://images.unsplash.com/photo-1470770841072-f978cf4d019e"},
+    {name:"Tokyo Sakura Hotel",place:"tokyo",price:180,image:"https://images.unsplash.com/photo-1506744038136-46273834b3fb"},
+    {name:"Dubai Palm Resort",place:"dubai",price:250,image:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"},
+    {name:"London Royal Suites",place:"london",price:210,image:"https://images.unsplash.com/photo-1505761671935-60b3a7427bad"},
+    {name:"Bali Island Resort",place:"bali",price:150,image:"https://images.unsplash.com/photo-1501785888041-af3ef285b470"},
+    {name:"Singapore Marina Hotel",place:"singapore",price:190,image:"https://images.unsplash.com/photo-1494526585095-c41746248156"},
+    {name:"Maldives Water Villa",place:"maldives",price:300,image:"https://images.unsplash.com/photo-1501117716987-c8e1ecb210b9"},
+    {name:"Mumbai Sea View Hotel",place:"mumbai",price:110,image:"https://images.unsplash.com/photo-1522708323590-d24dbb6b0267"}
+    ];
+
+    hotels.forEach(function(hotel){
+        if(hotel.place.includes(destination) && hotel.price<=price){
+            found=true;
+            resultContent.innerHTML+=`
+            <div class="result-card">
+                <img src="${hotel.image}">
+                <h3>${hotel.name}</h3>
+                <p>Location: ${hotel.place}</p>
+                <p>Price: <span class="price" data-price="${hotel.price}">$${hotel.price}</span> / night</p>
+                <p>Available: ${checkin} to ${checkout}</p>
+                <button class="book-btn" onclick="alert('Booking confirmed for ${hotel.name}')">Book Now</button>
+            </div>`;
+        }
+    });
+    if(!found){
+resultContent.innerHTML = "<h3 style='color:red;'>No hotels found for this destination</h3>";
+}
+
+    results.scrollIntoView({behavior:"smooth"});
+});
+
+</script>
+<script>
+function changeCurrency() {
+
+    const currency = document.getElementById("currency").value;
+    const prices = document.querySelectorAll(".price");
+
+    prices.forEach(price => {
+
+        let basePrice = price.getAttribute("data-price");
+
+        if (currency === "USD") {
+            price.innerHTML = "$" + basePrice + "/person";
+        } 
+        else if (currency === "INR") {
+            let converted = (basePrice * 83).toFixed(0);
+            price.innerHTML = "₹" + converted + "/person";
+        } 
+        else if (currency === "EUR") {
+            let converted = (basePrice * 0.92).toFixed(0);
+            price.innerHTML = "€" + converted + "/person";
+        }
+
+    });
+    changeCurrency();
+}
+</script>
+
+<footer>
+
+<div class="footer-container">
+
+<div class="footer-section">
+<h3>Pacific Travel</h3>
+<p>
+Explore the world with our professional travel services
+and hotel booking solutions.
+</p>
+</div>
+
+<div class="footer-section">
+<h3>Quick Links</h3>
+<a href="#">Home</a>
+<a href="#">About</a>
+<a href="#">Destinations</a>
+<a href="#">Hotels</a>
+</div>
+
+<div class="footer-section">
+<h3>Contact</h3>
+<p>Email: info@pacific.com</p>
+<p>Phone: +91 9876543210</p>
+<p>Location: Vijayawada, India</p>
+</div>
+
+<div class="footer-section">
+<h3>Follow Us</h3>
+<p>Facebook</p>
+<p>Instagram</p>
+<p>Twitter</p>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+© 2026 Pacific Travel Agency. All Rights Reserved.
+</div>
+
+</footer>
+
+</body>
+</html>

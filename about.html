@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About - Pacific Travel Agency</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:white;
+            padding-top:120px;   /* prevents overlap with fixed navbar */
+        }
+
+        /* ================= FIXED NAVBAR ================= */
+        header{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            background:rgba(0, 0, 0, 0.6);
+            color:white;
+            padding:20px 80px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            z-index:1000;
+        }
+
+        .logo h1{
+            font-size:28px;
+        }
+
+        .logo span{
+            color:#ff5722;
+            font-size:13px;
+            letter-spacing:3px;
+        }
+
+        nav ul{
+            list-style:none;
+            display:flex;
+            gap:30px;
+        }
+
+        nav ul li a{
+            text-decoration:none;
+            color:white;
+            font-weight:500;
+        }
+
+        nav ul li a:hover{
+            color:#ff5722;
+        }
+
+        /* ================= IMAGE SECTION ================= */
+       
+
+        .about-image img{
+            width:100%;
+            height:400px;
+            object-fit:cover;
+           
+        }
+
+        /* ================= MAIN SECTION ================= */
+        .main-section{
+            display:flex;
+            justify-content:space-between;
+            padding:40px 80px;
+            gap:40px;
+        }
+
+        .cards-area{
+            width:65%;
+            display:flex;
+            flex-wrap:wrap;
+            gap:20px;
+        }
+
+        .card{
+            width:48%;
+            border-radius:8px;
+            overflow:hidden;
+            box-shadow:0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .image-container{
+            position:relative;
+            height:250px;
+            background-size:cover;
+            background-position:center;
+            padding:20px;
+            color:white;
+        }
+
+        .icon-box{
+            background:#ff5722;
+            padding:5px;
+            border-radius:5px;
+            position:absolute;
+            top:20px;
+            left:20px;
+        }
+
+        .icon-box img{
+            width:40px;
+            height:40px;
+        }
+
+        .content{
+            position:absolute;
+            bottom:20px;
+            left:20px;
+            right:20px;
+        }
+
+        .content h2{
+            margin-bottom:10px;
+        }
+
+        .content p{
+            font-size:14px;
+        }
+
+        .text-area{
+            width:30%;
+            font-size:15px;
+            line-height:1.6;
+        }
+
+        .text-area h2{
+            color:#ff5722;
+            margin-bottom:20px;
+        }
+
+        .text-area h3{
+            margin-bottom:10px;
+        }
+
+        /* Background Images */
+        .card1{ background-image:url('https://www.shutterstock.com/image-photo/pro-surfer-rides-big-wave-600nw-2558039415.jpg'); }
+        .card2{ background-image:url('https://thumbs.dreamstime.com/b/happy-travel-woman-vacation-concept-funny-traveler-enjoy-her-trip-ready-to-adventure-happy-travel-woman-vacation-concept-118679424.jpg'); }
+        .card3{ background-image:url('https://i0.wp.com/tajmahalcabs.com/agra/wp-content/uploads/Private-Tour-Guide-for-Taj-Mahal.png?w=1408&ssl=1'); }
+        .card4{ background-image:url('https://thumbs.dreamstime.com/b/directional-sign-beach-paradise-old-town-weathered-wooden-directional-sign-stands-firmly-sand-sunlit-beach-432369680.jpg'); }
+
+    </style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+    <div class="logo">
+        <h1>Pacific </h1>   
+            <span>TRAVEL AGENCY</span>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="destination.html">Destination</a></li>
+            <li><a href="hotel.html">Hotel</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="#" id="logoutBtn">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- ================= IMAGE ================= -->
+<section class="about-image">
+    <img src="https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/12/28/e0/56.jpg">
+</section>
+<script>
+    // Logout button functionality
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    logoutBtn.addEventListener('click', function(){
+        // Remove login flag from localStorage
+        localStorage.removeItem('loggedIn');
+
+        // Redirect to login page
+        alert('You have been logged out!');
+        window.location.href = 'login.html';
+    });
+
+    // Optional: protect this page if user not logged in
+    if(localStorage.getItem('loggedIn') !== 'true'){
+        alert('Please login first!');
+        window.location.href = 'login.html';
+    }
+</script>
+<!-- ================= MAIN SECTION ================= -->
+<div class="main-section">
+
+    <div class="cards-area">
+
+        <div class="card">
+            <div class="image-container card1">
+                <div class="icon-box">
+                    <img src="https://static.vecteezy.com/system/resources/previews/036/430/701/non_2x/paraglider-images-free-vector.jpg">
+                </div>
+                <div class="content">
+                    <h2>Activities</h2>
+                    <p>A small river named Duden flows by their place.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="image-container card2">
+                <div class="icon-box">
+                    <img src="https://i.fbcd.co/products/resized/resized-750-500/34-4625586a1856fbe77fcdd2c4e1088a37b6d94f819ef4b324721ff9533bd7ac45.jpg">
+                </div>
+                <div class="content">
+                    <h2>Travel Arrangements</h2>
+                    <p>A small river named Duden flows by their place.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="image-container card3">
+                <div class="icon-box">
+                    <img src="https://www.shutterstock.com/image-vector/tour-guide-flag-vector-icon-260nw-2445769143.jpg">
+                </div>
+                <div class="content">
+                    <h2>Private Guide</h2>
+                    <p>A small river named Duden flows by their place.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="image-container card4">
+                <div class="icon-box">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTshB8c-GuxZrnBREe8FrlPboDcHGKUVAT_Wg&s">
+                </div>
+                <div class="content">
+                    <h2>Location Manager</h2>
+                    <p>A small river named Duden flows by their place.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="text-area">
+        <h2>Welcome to Pacific</h2>
+        <h3>It's time to start your adventure.</h3>
+        <p>
+            A small river named Duden flows by their place and supplies it with the necessary regelialia.
+            It is a paradisematic country.
+            <br><br>
+            Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+            there live the blind texts separated in Bookmarksgrove.
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

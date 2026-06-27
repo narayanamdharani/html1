@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register - Pacific Travel Agency</title>
+    <style>
+        *{margin:0; padding:0; box-sizing:border-box; font-family:Arial,sans-serif;}
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:flex-start;
+            align-items:center;
+            background-image: url('pacific.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding-left: 80px;
+        }
+        .register-box{
+            background: rgba(255,255,255,0.95);
+            width:350px;
+            padding:40px;
+            border-radius:10px;
+            box-shadow:0 8px 20px rgba(0,0,0,0.3);
+            text-align:center;
+        }
+        .register-box h2{ margin-bottom:25px; }
+        .register-box input{
+            width:100%;
+            padding:12px;
+            margin:10px 0;
+            border:1px solid #ccc;
+            border-radius:5px;
+            outline:none;
+        }
+        .register-box input:focus{ border-color:#ff5722; }
+        .register-box button{
+            width:100%;
+            padding:12px;
+            margin-top:15px;
+            background:black;
+            color:white;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+            font-size:15px;
+        }
+        .register-box button:hover{ background:#ff5722; }
+        .register-box p{ margin-top:15px; font-size:14px; }
+        .register-box a{ color:#ff5722; text-decoration:none; }
+    </style>
+</head>
+<body>
+<div class="register-box">
+    <h2>Register</h2>
+    <form id="registerForm">
+        <input type="text" id="regName" placeholder="Full Name" required>
+        <input type="email" id="regEmail" placeholder="Email" required>
+        <input type="password" id="regPassword" placeholder="Password" required>
+        <button type="submit">Register</button>
+    </form>
+    <p>Already have an account? <a href="login.html">Login</a></p>
+</div>
+
+<script>
+    const registerForm = document.getElementById('registerForm');
+
+    registerForm.addEventListener('submit', function(e){
+        e.preventDefault();
+
+        const name = document.getElementById('regName').value;
+        const email = document.getElementById('regEmail').value;
+        const password = document.getElementById('regPassword').value;
+
+        // Save user to localStorage
+        const user = {name, email, password};
+        localStorage.setItem('user', JSON.stringify(user));
+
+        alert('Registration successful! You can now login.');
+        window.location.href = 'login.html';
+    });
+</script>
+</body>
+</html>
